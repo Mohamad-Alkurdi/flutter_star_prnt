@@ -1,10 +1,10 @@
 import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 // import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_star_prnt/flutter_star_prnt.dart';
-import 'dart:ui' as ui;
 
 void main() => runApp(MyApp());
 
@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     try {
       RenderRepaintBoundary? boundary = _globalKey.currentContext!
           .findRenderObject() as RenderRepaintBoundary;
-      ui.Image image = await boundary!.toImage(pixelRatio: 3.0);
+      ui.Image image = await boundary.toImage(pixelRatio: 3.0);
       ByteData? byteData =
           await image.toByteData(format: ui.ImageByteFormat.png);
       final pngBytes = byteData!.buffer.asUint8List();

@@ -202,7 +202,13 @@ class PrintCommands {
         child: repaintBoundary,
       ),
       configuration: ViewConfiguration(
-        size: logicalSize,
+        physicalConstraints: BoxConstraints.tight(logicalSize) *
+            WidgetsFlutterBinding.ensureInitialized()
+                .platformDispatcher
+                .views
+                .first
+                .devicePixelRatio,
+        logicalConstraints: BoxConstraints.tight(logicalSize),
         devicePixelRatio: 1.0,
       ),
     );
